@@ -1,6 +1,16 @@
-// 3- Horas a minutos
-const readline = require('readline-sync');
+import readline from "node:readline";
 
-let horas = parseFloat(readline.question('Ingrese la cantidad de horas: '));
-let minutos = horas * 60;
-console.log(horas + ' horas equivalen a ' + minutos + ' minutos');
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question("Ingrese la cantidad de horas: ", function (horasIngresadas) {
+
+    const horas = Number(horasIngresadas);
+    const minutos = horas * 60;
+
+    console.log(`${horas} horas equivalen a ${minutos} minutos`);
+
+    rl.close();
+});

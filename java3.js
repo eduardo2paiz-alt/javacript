@@ -1,9 +1,23 @@
-// 4- Total a pagar por un producto
-const readline = require('readline-sync');
+import readline from "node:readline";
 
-let nombre = readline.question('Ingrese el nombre del producto: ');
-let precioUnitario = parseFloat(readline.question('Ingrese el precio unitario: '));
-let cantidad = parseInt(readline.question('Ingrese la cantidad comprada: '));
-let total = precioUnitario * cantidad;
-console.log('Producto: ' + nombre);
-console.log('Total a pagar: $' + total);
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+rl.question("Ingrese el nombre del producto: ", function (nombreProducto) {
+    rl.question("Ingrese el precio unitario: ", function (precioIngresado) {
+        rl.question("Ingrese la cantidad comprada: ", function (cantidadIngresada) {
+
+            const precioUnitario = Number(precioIngresado);
+            const cantidad = Number(cantidadIngresada);
+
+            const total = precioUnitario * cantidad;
+
+            console.log(`Producto: ${nombreProducto}`);
+            console.log(`Total a pagar: $${total}`);
+
+            rl.close();
+        });
+    });
+});

@@ -1,9 +1,28 @@
-// npm install readline-sync
-const readline = require('readline-sync');
+// Importamos el módulo readline
+import readline from "node:readline";
 
-// 1- Promedio de tres notas
-let nota1 = parseFloat(readline.question('Ingrese la primera nota: '));
-let nota2 = parseFloat(readline.question('Ingrese la segunda nota: '));
-let nota3 = parseFloat(readline.question('Ingrese la tercera nota: '));
-let promedio = (nota1 + nota2 + nota3) / 3;
-console.log('El promedio del estudiante es: ' + promedio);
+// Creamos la interfaz
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
+
+// Solicitamos las tres notas
+rl.question("Ingrese la primera nota: ", function (primeraNota) {
+    rl.question("Ingrese la segunda nota: ", function (segundaNota) {
+        rl.question("Ingrese la tercera nota: ", function (terceraNota) {
+
+            // Convertimos las respuestas a número
+            const nota1 = Number(primeraNota);
+            const nota2 = Number(segundaNota);
+            const nota3 = Number(terceraNota);
+
+            // Calculamos el promedio
+            const promedio = (nota1 + nota2 + nota3) / 3;
+
+            console.log(`El promedio del estudiante es: ${promedio}`);
+
+            rl.close();
+        });
+    });
+});
